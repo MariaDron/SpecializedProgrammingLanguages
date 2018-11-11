@@ -21,9 +21,7 @@ public abstract class Auto {
         pollution = 5.3;
     }
 
-    protected void printName() {
-        System.out.println("Auto name: " + name);
-    }
+    protected abstract void printName();
 
     protected void printSpeed() {
         System.out.println("Auto speed: " + speed + " km/h");

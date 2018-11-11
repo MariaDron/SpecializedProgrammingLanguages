@@ -14,6 +14,11 @@ public class Truck extends Auto {
         cargo = 3;
     }
 
+    @Override
+    protected void printName() {
+        System.out.println("Truck name: " + name);
+    }
+
     public void printCargo() {
         System.out.println("Truck transported cargo: " + cargo + " t");
     }

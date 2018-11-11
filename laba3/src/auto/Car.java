@@ -14,6 +14,11 @@ public class Car extends Auto {
         passengers = 4;
     }
 
+    @Override
+    protected void printName() {
+        System.out.println("Car name: " + name);
+    }
+
     public void printPassengers() {
         System.out.println("Car transported passengers: " + passengers);
     }
