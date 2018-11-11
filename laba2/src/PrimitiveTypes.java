@@ -1,11 +1,14 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
- * CLass for manipulations with primitives
+ * Class for manipulations with primitives
  *
  * @author Maria Dron
  */
@@ -24,6 +27,7 @@ public class PrimitiveTypes {
         primitives.calculator();
         primitives.validation();
         primitives.setOfNumbers();
+        primitives.sieveOfEratosthenes();
     }
 
     /**
@@ -227,6 +231,37 @@ public class PrimitiveTypes {
             }
             num++;
         }
+    }
+
+    /**
+     * Реализовать решето Эратосфена: найти все простые числа от 2 до n (которое ввести с клавиатуры).
+     * Для этого формируется ряд чисел от 1 до n. 1 пропускается. 2 тоже пропускается,
+     * но вычеркивается каждое второе число (каждое четное). Следующее число (3) пропускается,
+     * но затем вычеркивается каждое третье число и т.п.
+     * После успешного выполнения - оптимизировать алгоритм с точки зрения минимизации вычислительной сложности
+     * (использовать факт из теории чисел).
+     */
+    private void sieveOfEratosthenes() {
+        System.out.println("\n============================================\nTASK 10");
+        Scanner in = new Scanner( System.in );
+        System.out.print("Please, input integer.\n\tn = ");
+        int n = in.nextInt();
+        int p, tmp;
+        List<Integer> result = Arrays.asList(2);
+        List<Integer> sieve = IntStream.range(2, n + 1).boxed().collect(Collectors.toCollection(CopyOnWriteArrayList::new));
+        printList(sieve);
+        while(sieve.size() > 0) {
+            p = sieve.get(0);
+            tmp = p;
+            for (int value : sieve) {
+                if (value == p + tmp) {
+                    sieve.remove(value);
+                    p += tmp;
+                }
+            }
+            result.add(sieve.get(0));
+        }
+        printList(sieve);
     }
 
     private void printList(List<Integer> list) {
