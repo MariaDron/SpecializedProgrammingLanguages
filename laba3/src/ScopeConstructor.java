@@ -1,5 +1,7 @@
 /**
  * Сделать класс с перегруженными конструкторами (по умолчанию, с заданными параметрами, создание копии другого объекта).
+ *
+ * @author Maria Dron
  */
 public class ScopeConstructor {
     ListManipulation listManipulationCopy;

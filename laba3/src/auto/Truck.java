@@ -1,5 +1,8 @@
 package auto;
 
+/**
+ * @author Maria Dron
+ */
 public class Truck extends Auto {
     private int cargo;
 

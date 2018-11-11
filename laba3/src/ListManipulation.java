@@ -4,14 +4,17 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+ * @author Maria Dron
+ */
 public class ListManipulation implements Cloneable {
     private List<Integer> list = new Random().ints(20, 0, 100)
             .boxed().collect(Collectors.toList());
 
     public static void main(String[] args) {
         ListManipulation listManipulation = new ListManipulation();
-        //listManipulation.bubbleSort();
-        //listManipulation.matrix();
+        listManipulation.bubbleSort();
+        listManipulation.matrix();
         listManipulation.scope();
     }
 
