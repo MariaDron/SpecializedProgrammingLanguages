@@ -38,7 +38,5 @@ public class Main {
         for (int j = 0; j < parameters.length; j++) {
             System.out.println(parameters[j].getType().getName() + " " + fields[j].getName() + " = " + fields[j].get(this));
         }
-
-        System.out.println("create conflict");
     }
 }
