@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -8,33 +7,33 @@ import java.util.stream.Collectors;
  * @author MariaDron
  */
 public class ListManipulation implements Cloneable {
-    private List<Integer> list = new Random().ints(20, 0, 100)
-            .boxed().collect(Collectors.toList());
 
     public static void main(String[] args) {
         ListManipulation listManipulation = new ListManipulation();
-        //listManipulation.bubbleSort();
-        //listManipulation.matrix();
-        listManipulation.scope();
+        ListManipulation.bubbleSort(20);
+        listManipulation.matrix();
+        //listManipulation.scope();
     }
 
     /**
      * При помощи статического метода реализовать пузырьковую сортировку массива целых чисел
      * (длина массива задается при вызове метода сортировки).
      */
-    private void bubbleSort() {
+    private static void bubbleSort(int arrLength) {
         System.out.println("\n============================================\nTASK 1");
+        List<Integer> list = new Random().ints(arrLength, 0, 100)
+                .boxed().collect(Collectors.toList());
         printList(list);
         for (int i = list.size() - 1; i >= 1; i--) {
             for (int j = 0; j < i; j++) {
                 if(list.get(j) > list.get(j+1))
-                    swap(j, j + 1);
+                    swap(list, j, j + 1);
             }
         }
         printList(list);
     }
 
-    private void swap(int first, int second){ //метод меняет местами пару чисел массива
+    private static void swap(List<Integer> list, int first, int second){ //метод меняет местами пару чисел массива
         int dummy = list.get(first);
         list.set(first, list.get(second));
         list.set(second, dummy);
@@ -103,15 +102,13 @@ public class ListManipulation implements Cloneable {
         }
     }
 
-    private void printList(List<Integer> list) {
+    private static void printList(List<Integer> list) {
         System.out.println();
         list.forEach(i -> System.out.print(i + " "));
     }
 
     @Override
     protected ListManipulation clone() {
-        ListManipulation listManipulation = new ListManipulation();
-        listManipulation.list = new ArrayList<>(list);
-        return listManipulation;
+        return new ListManipulation();
     }
 }

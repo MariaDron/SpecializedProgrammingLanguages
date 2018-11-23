@@ -5,6 +5,7 @@ package auto;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println("\n============================================\nTASK 5");
         Car car = new Car();
         Truck truck = new Truck();
 
