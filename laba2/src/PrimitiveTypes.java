@@ -1,11 +1,10 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Class for manipulations with primitives
@@ -110,7 +109,7 @@ public class PrimitiveTypes {
         System.out.println(d);
         float f = (float) d;
         System.out.println(f);
-        int castedInt = (int) f;
+        int castedInt = (int) d;
         System.out.println(castedInt);
     }
 
@@ -163,7 +162,8 @@ public class PrimitiveTypes {
         int i = in.nextInt();
         switch (i) {
             case 0:
-                System.out.println((i == IntEnum.ZERO.ordinal()) ? IntEnum.ZERO + "(" + IntEnum.ZERO.ordinal() + ")" : null);
+                System.out.println((i == IntEnum.ZERO.ordinal())
+                        ? IntEnum.ZERO + "(" + IntEnum.ZERO.ordinal() + ")" : null);
                 break;
             case 1:
                 System.out.println((i == IntEnum.ONE.ordinal()) ? IntEnum.ONE : null);
@@ -223,12 +223,10 @@ public class PrimitiveTypes {
         int num = 0;
         while (true) {
             if (num*num <= 10000) {
-                if (num >=0 && num % 2 ==1) {
+                if (num >=0 && num % 2 ==1)
                     System.out.print(num + " ");
-                }
-            } else {
+            } else
                 break;
-            }
             num++;
         }
     }
@@ -246,26 +244,22 @@ public class PrimitiveTypes {
         Scanner in = new Scanner( System.in );
         System.out.print("Please, input integer.\n\tn = ");
         int n = in.nextInt();
-        int p, tmp;
-        List<Integer> result = Arrays.asList(2);
-        List<Integer> sieve = IntStream.range(2, n + 1).boxed().collect(Collectors.toCollection(CopyOnWriteArrayList::new));
-        printList(sieve);
-        while(sieve.size() > 0) {
-            p = sieve.get(0);
-            tmp = p;
-            for (int value : sieve) {
-                if (value == p + tmp) {
-                    sieve.remove(value);
-                    p += tmp;
-                }
-            }
-            result.add(sieve.get(0));
-        }
+        List<Boolean> sieve = new ArrayList<>(Arrays.asList(new Boolean[n]));
+        Collections.fill(sieve, Boolean.TRUE);
+        sieve.set(0, Boolean.FALSE);
+        sieve.set(1, Boolean.FALSE);
+
+        for (int i = 2; i < sieve.size(); i++)
+            if (sieve.get(i))
+                for (int j = 2; i*j < sieve.size(); j++)
+                    sieve.set(i*j, Boolean.FALSE);
         printList(sieve);
     }
 
-    private void printList(List<Integer> list) {
+    private void printList(List<Boolean> list) {
         System.out.println();
-        list.forEach(i -> System.out.print(i + " "));
+        for (int i = 0; i < list.size(); i++)
+            if (list.get(i))
+                System.out.print(i + " ");
     }
 }

@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class ConsoleCalculator {
     private static final double smToInch = 0.39;
     private static final double inchToSm = 2.54;
+    private static final double freeFall = 9.832;
 
     public static void main(String[] args) {
         System.out.println("\n============================================\nTASK 6");
@@ -16,8 +17,9 @@ public class ConsoleCalculator {
         Scanner in = new Scanner( System.in );
         int i;
         while(true) {
-            System.out.println("1. Convert sm to inch"
-                    + "2. Convert ich to sm");
+            System.out.println("1. Convert sm to inch\n"
+                    + "2. Convert ich to sm\n"
+                    + "3. Calculate free fall increase\n");
             i = in.nextInt();
             switch (i) {
                 case 1:
@@ -30,6 +32,13 @@ public class ConsoleCalculator {
                     double inch = in.nextDouble();
                     System.out.println(inch + " inch = " + calculator.convertInchToSm(inch) + " sm");
                     break;
+                case 3:
+                    System.out.println("Please, input the value in time");
+                    double time = in.nextDouble();
+                    System.out.println("Free fall increase = " + calculator.calculateIncreaseFreeFall(time));
+                    break;
+                default:
+                    System.out.println("ERROR");
             }
         }
     }
@@ -40,5 +49,9 @@ public class ConsoleCalculator {
 
     private double convertInchToSm(double inch){
         return inch / inchToSm;
+    }
+
+    private double calculateIncreaseFreeFall(double time) {
+        return freeFall * time;
     }
 }
