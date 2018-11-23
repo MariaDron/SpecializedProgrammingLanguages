@@ -16,18 +16,32 @@ public class Main {
 
 
     public static void main(String[] args) throws NoSuchMethodException, IllegalAccessException {
+        Main main = new Main();
+        main.overrideToStringMethod();
+        main.methodParameters();
+
+        TestedObject testedObject = new TestedObject();
+        testedObject.createAnonymousClasses();
+    }
+
+    /**
+     * Реализовать собственный класс с несколькими полями и методами, переопределить унаследованный метод toString().
+     */
+    private void overrideToStringMethod() {
         System.out.println("============================================\nTASK 1");
         TestedObject testedObject = new TestedObject();
         System.out.println(testedObject.toString());
-
-        Main main = new Main();
-        main.methodParameters();
     }
 
     private void methodParameters() throws NoSuchMethodException, IllegalAccessException {
         printParameters(testedObject, str, list, i, bool);
     }
 
+    /**
+     * Реализовать метод, принимающий пять разнотипных параметров (в т.ч. собственных классов), тремя разными способами:
+     * с явным заданием пяти разных параметров, через массив object[] и varargs. Напечатать на экране тип параметра
+     * и его значение (для класса - основные поля).
+     */
     public void printParameters(TestedObject testedObject, String str, List list, Integer i, Boolean bool) throws NoSuchMethodException, IllegalAccessException {
         System.out.println("\n============================================\nTASK 2");
 
@@ -38,7 +52,5 @@ public class Main {
         for (int j = 0; j < parameters.length; j++) {
             System.out.println(parameters[j].getType().getName() + " " + fields[j].getName() + " = " + fields[j].get(this));
         }
-
-        System.out.println("coflict" + str);
     }
 }
