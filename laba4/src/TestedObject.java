@@ -18,7 +18,8 @@ public class TestedObject {
 
     @Override
     public String toString() {
-        return super.toString() + "; i = " + getI() + "; testString = " + testString;
+        return super.toString() + "; i = " + getI()
+                + "; testString = " + testString;
     }
 
     /**

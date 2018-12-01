@@ -35,6 +35,7 @@ public class Main {
 
     private void methodParameters() throws NoSuchMethodException, IllegalAccessException {
         printParameters(testedObject, str, list, i, bool);
+        printParameters(new Object[]{testedObject, str, list, i, bool});
     }
 
     /**
@@ -42,7 +43,8 @@ public class Main {
      * с явным заданием пяти разных параметров, через массив object[] и varargs. Напечатать на экране тип параметра
      * и его значение (для класса - основные поля).
      */
-    public void printParameters(TestedObject testedObject, String str, List list, Integer i, Boolean bool) throws NoSuchMethodException, IllegalAccessException {
+    public void printParameters(TestedObject testedObject, String str, List list, Integer i, Boolean bool)
+            throws NoSuchMethodException, IllegalAccessException {
         System.out.println("\n============================================\nTASK 2");
 
         Method method = Main.class.getMethod("printParameters", TestedObject.class,
@@ -50,7 +52,15 @@ public class Main {
         Field[] fields = Main.class.getFields();
         Parameter[] parameters = method.getParameters();
         for (int j = 0; j < parameters.length; j++) {
-            System.out.println(parameters[j].getType().getName() + " " + fields[j].getName() + " = " + fields[j].get(this));
+            System.out.println(parameters[j].getType().getName() + " " + fields[j].getName()
+                    + " = " + fields[j].get(this));
+        }
+    }
+
+    public void printParameters(Object[] args) {
+        System.out.println("\n============================================\nTASK 2");
+        for (int i = 0; i < args.length; i++) {
+            System.out.println(args[i].getClass().getName() + " arg" + i + " = " + args[i]);
         }
     }
 }

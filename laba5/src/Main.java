@@ -21,11 +21,11 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        /*main.unitStrings();
+        main.unitStrings();
         main.strValidator("jhY45 *b5");
-        main.copyFile("laba5/first.txt", "laba5/second.txt");*/
-        //main.printFileDump();
-        //main.testCustomCloseableClass();
+        main.copyFile("laba5/first.txt", "laba5/second.txt");
+        main.printFileDump();
+        main.testCustomCloseableClass();
         try {
             main.cascading();
         } catch (NumericException e) {
@@ -112,12 +112,10 @@ public class Main {
             byte[] buf = new byte[15];
             int i;
             while((i = inputStream.read(buf)) !=-1) {
-                if (i < 15) {
+                if (i < 15)
                     buf = Arrays.copyOf(buf, i);
-                }
-                for (byte b : buf) {
+                for (byte b : buf)
                     System.out.printf("0x%08X ", b);
-                }
                 System.out.println();
             }
         } catch (FileNotFoundException e) {
